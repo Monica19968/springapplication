@@ -26,8 +26,10 @@ public class FTPLocationController {
 
 	@Autowired
 	FTPLocationService ftpLocationService;
+
 	/**
-	 *For Creating FTP Location 
+	 * For Creating FTP Location
+	 * 
 	 * @param ftpLocation
 	 * @return All Created FTP Locations
 	 */
@@ -35,9 +37,10 @@ public class FTPLocationController {
 	public String createFTPLocation(@Valid @RequestBody FTPLocation ftpLocation) {
 		return ftpLocationService.createFTPLocation(ftpLocation);
 	}
-	
+
 	/**
 	 * Fetch FTPLocation by userName
+	 * 
 	 * @param userName
 	 * @return FTPLocation by userName with all fields
 	 */
@@ -48,6 +51,7 @@ public class FTPLocationController {
 
 	/**
 	 * Updating existing FTPLocation by id
+	 * 
 	 * @param ftpID
 	 * @param ftpLocation
 	 * @return Updated FTP location
@@ -61,14 +65,17 @@ public class FTPLocationController {
 
 	/**
 	 * Fetch all FTP Locations
+	 * 
 	 * @return All FTPLocations
 	 */
 	@GetMapping("/getAllFTPLocation")
-	public List<FTPLocation> getAllFTPLocation(){
+	public List<FTPLocation> getAllFTPLocation() {
 		return ftpLocationService.getAllFTPLocation();
 	}
+
 	/**
 	 * Delete FTPLocation by id
+	 * 
 	 * @param id
 	 * @return successfully deleted FTPLocation
 	 */
@@ -76,17 +83,17 @@ public class FTPLocationController {
 	public FTPLocation deleteFTPLocation(@PathVariable Integer id) {
 		return ftpLocationService.deleteFTPLocation(id);
 	}
-	
+
 	@GetMapping("/getFiles")
 	public List getAllFiles() {
 		return ftpLocationService.getFilesFTPFromServer();
 	}
-	
-	 @GetMapping("/copyfiles")
-	  public String copyingFile(@RequestParam(value="source") String source, @RequestParam(value="dest")String dest) throws IOException {
-	      ftpLocationService.copyingFile(source, dest);
-	     return "file transfer was successful";
-	      }
-	
-	
+
+	@GetMapping("/copyfiles")
+	public String copyingFile(@RequestParam(value = "source") String source, @RequestParam(value = "dest") String dest)
+			throws IOException {
+		ftpLocationService.copyingFile(source, dest);
+		return "file transfer was successful";
+	}
+
 }

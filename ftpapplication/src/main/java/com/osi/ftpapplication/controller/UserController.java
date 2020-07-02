@@ -14,33 +14,36 @@ import com.osi.ftpapplication.exception.UsernameNotFoundException;
 import com.osi.ftpapplication.model.User;
 import com.osi.ftpapplication.service.UserService;
 
-
-@RestController @CrossOrigin(origins = "http://localhost:4200")
+@RestController
+@CrossOrigin(origins = "http://localhost:4200")
 
 @RequestMapping("/user")
 public class UserController {
-	
+
 	@Autowired
 	UserService userService;
-	
+
 	/**
 	 * Validating user with userName
+	 * 
 	 * @param username
 	 * @return only if it is a valid user
 	 * @throws InvalidUserException
 	 * @throws UsernameNotFoundException
 	 */
-	
+
 	@GetMapping("/validUser/{username}")
 	public User isValidUser(@PathVariable String username) throws InvalidUserException, UsernameNotFoundException {
 		return userService.isValidUser(username);
 	}
+
 	/**
 	 * Get All Active Users
+	 * 
 	 * @return all users in DB
 	 */
 	@GetMapping("/getAllUser")
-	public List<User> getAllUser(){
+	public List<User> getAllUser() {
 		return userService.getAllUser();
 	}
 }

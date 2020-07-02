@@ -12,15 +12,13 @@ public class JobScheduler {
 	@Id
 	@GeneratedValue(strategy= GenerationType.AUTO)
 	Integer id;
-	String name;
+	String schedulerName;
 	
-    Long sourceLocationId;
+    String sourceLocation;
 	
-    Long destinationLocationId;
-    String schedule;
+    String destinationLocation;
+    String frequency;
     LocalDateTime datetime;
-    
-    
 	public JobScheduler() {
 		
 	}
@@ -30,29 +28,30 @@ public class JobScheduler {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public String getName() {
-		return name;
+	public String getSchedulerName() {
+		return schedulerName;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setSchedulerName(String schedulerName) {
+		this.schedulerName = schedulerName;
 	}
-	public Long getSourceLocationId() {
-		return sourceLocationId;
+	public String getSourceLocation() {
+		return sourceLocation;
 	}
-	public void setSourceLocationId(Long sourceLocationId) {
-		this.sourceLocationId = sourceLocationId;
+	public void setSourceLocation(String sourceLocation) {
+		this.sourceLocation = sourceLocation;
 	}
-	public Long getDestinationLocationId() {
-		return destinationLocationId;
+	
+	public String getDestinationLocation() {
+		return destinationLocation;
 	}
-	public void setDestinationLocationId(Long destinationLocationId) {
-		this.destinationLocationId = destinationLocationId;
+	public void setDestinationLocation(String destinationLocation) {
+		this.destinationLocation = destinationLocation;
 	}
-	public String getSchedule() {
-		return schedule;
+	public String getFrequency() {
+		return frequency;
 	}
-	public void setSchedule(String schedule) {
-		this.schedule = schedule;
+	public void setFrequency(String frequency) {
+		this.frequency = frequency;
 	}
 	public LocalDateTime getDatetime() {
 		return datetime;
@@ -62,10 +61,11 @@ public class JobScheduler {
 	}
 	@Override
 	public String toString() {
-		return "JobScheduler [id=" + id + ", name=" + name + ", sourceLocationId=" + sourceLocationId
-				+ ", destinationLocationId=" + destinationLocationId + ", schedule=" + schedule + ", datetime="
-				+ datetime + "]";
+		return "JobScheduler [id=" + id + ", schedulerName=" + schedulerName + ", sourceLocation=" + sourceLocation
+				+ ", destinationLocation=" + destinationLocation + ", frequency=" + frequency + ", datetime=" + datetime
+				+ "]";
 	}
+    
+    
 
-   
 }

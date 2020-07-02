@@ -36,23 +36,23 @@ public class FTPLocationService {
 	public String createFTPLocation(FTPLocation ftpLocation) {
 		FTPLocation savedFTPLocation = ftpLocationRepository.save(ftpLocation);
 		if (savedFTPLocation != null)
-			return "Your FTPLoaction is saved " + ftpLocation.getName();
+			return "Your FTPLoaction is saved " + ftpLocation.getUserName();
 		else
-			return "Your FTPLoaction isn't saved " + ftpLocation.getName();
+			return "Your FTPLoaction isn't saved " + ftpLocation.getUserName();
 	}
 
 	public FTPLocation getFTPLocation(String userName) {
 		return ftpLocationRepository.getByUserName(userName);
 	}
 
-	public FTPLocation updateFTPLocation(Integer ID, FTPLocation ftpLocation) throws FTPLocationNotFoundException {
-		if (!ftpLocationRepository.existsById(ID)) {
-			throw new FTPLocationNotFoundException("FTP doesn't exist " + ID);
+	public FTPLocation updateFTPLocation(Integer id, FTPLocation ftpLocation) throws FTPLocationNotFoundException {
+		if (!ftpLocationRepository.existsById(id)) {
+			throw new FTPLocationNotFoundException("FTP doesn't exist " + id);
 		}
 		FTPLocation updatedFTPLocation = new FTPLocation();
-		updatedFTPLocation.setID(ID);
-		updatedFTPLocation.seturl(ftpLocation.url());
-		updatedFTPLocation.setName(ftpLocation.getName());
+		updatedFTPLocation.setId(id);
+		updatedFTPLocation.setLocationUrl(ftpLocation.getLocationUrl());
+		updatedFTPLocation.setLocationName(ftpLocation.getLocationName());
 		updatedFTPLocation.setUserName(ftpLocation.getUserName());
 		updatedFTPLocation.setPassword(ftpLocation.getPassword());
 		return ftpLocationRepository.save(updatedFTPLocation);

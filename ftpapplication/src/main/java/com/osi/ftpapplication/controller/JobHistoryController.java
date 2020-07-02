@@ -18,9 +18,10 @@ public class JobHistoryController {
 
 	@Autowired
 	JobHistoryService jobHistoryService;
-	
+
 	/**
 	 * Get JobDetails by ID
+	 * 
 	 * @param id
 	 * @return JobDetails with reference to ID
 	 * @throws IDNotFoundException
@@ -28,10 +29,12 @@ public class JobHistoryController {
 	@GetMapping("/getJobDetails/{id}")
 	public JobHistory getJobDetails(@PathVariable Integer id) throws IDNotFoundException {
 		return jobHistoryService.getJobDetails(id);
-		
+
 	}
+
 	/**
 	 * Delete JobDetails by ID
+	 * 
 	 * @param id
 	 * @return successfully deleted JobDetails with reference to ID
 	 */

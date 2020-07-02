@@ -21,9 +21,9 @@ public class JobSchedulerService {
 		JobScheduler savedJobScheduler = jobSchedulerRepository.save(jobsScheduler);
 
 		if(savedJobScheduler!=null)
-			return "your jobscheduler is created" +jobsScheduler.getName();
+			return "your jobscheduler is created" +jobsScheduler.getSchedulerName();
 		else
-			return "your jobscheduler isn't created"+jobsScheduler.getName();
+			return "your jobscheduler isn't created"+jobsScheduler.getSchedulerName();
 		
 	}
 	
@@ -40,10 +40,10 @@ public class JobSchedulerService {
 		}
 		JobScheduler updatedJobScheduler = new JobScheduler();
 		updatedJobScheduler.setId(id);
-		updatedJobScheduler.setName(jobScheduler.getName());
-		updatedJobScheduler.setSourceLocationId(jobScheduler.getSourceLocationId());
-		updatedJobScheduler.setDestinationLocationId(jobScheduler.getDestinationLocationId());
-		updatedJobScheduler.setSchedule(jobScheduler.getSchedule());
+		updatedJobScheduler.setSchedulerName(jobScheduler.getSchedulerName());
+		updatedJobScheduler.setSourceLocation(jobScheduler.getSourceLocation());
+		updatedJobScheduler.setDestinationLocation(jobScheduler.getDestinationLocation());
+		updatedJobScheduler.setFrequency(jobScheduler.getFrequency());
 		updatedJobScheduler.setDatetime(jobScheduler.getDatetime());
 		return jobSchedulerRepository.save(updatedJobScheduler);
 	}
