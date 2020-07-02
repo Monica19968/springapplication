@@ -1,0 +1,94 @@
+<div class="modal-header pt-2 pb-2">
+  <h4 class="modal-title">{{ title }}</h4>
+  <button type="button" style="background-color: white; border: 2px solid white;" aria-label="Close"
+    (click)="activeModal.close()">
+    <i class="fa fa-times" aria-hidden="true"></i>
+  </button>
+</div>
+
+<form [formGroup]="scheduleForm" (ngSubmit)="onSubmit()">
+  <div class="modal-body">
+    <div class="form-group">
+      <div class="row m-0">
+        <div class="col-sm-12">
+          <label>Scheduler Name:</label>
+          <input type="text" class="form-control" formControlName="schedulerName">
+          <span class="help-block" *ngIf="scheduleForm.get('schedulerName').errors &&
+            (scheduleForm.get('schedulerName').touched || (scheduleForm.get('schedulerName').dirty))">
+            <span *ngIf="scheduleForm.get('schedulerName').errors.required">
+              Scheduler Name is required
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="row m-0">
+        <div class="col-sm-6">
+          <label>Source location Name:</label>
+          <select name="location" class="form-control" formControlName="sourceLocation">
+            <option value="">Select</option>
+            <option *ngFor="let i of sourceLocation" [value]="i.name">
+              {{i.name}}
+            </option>
+          </select>
+          <span class="help-block" *ngIf="scheduleForm.get('sourceLocation').errors &&
+          (scheduleForm.get('sourceLocation').touched || (scheduleForm.get('sourceLocation').dirty))">
+            <span *ngIf="scheduleForm.get('sourceLocation').errors.required">
+              Source Location Name is required
+            </span>
+          </span>
+        </div>
+
+        <div class="col-sm-6">
+          <label>Destination location Name:</label>
+          <select name="location" class="form-control"  formControlName="destinationLocation">
+            <option value="">Select</option>
+            <option *ngFor="let j of destinationLocation" [value]="j.name">
+              {{j.name}}
+            </option>
+          </select>
+          <span class="help-block" *ngIf="scheduleForm.get('destinationLocation').errors &&
+                 (scheduleForm.get('destinationLocation').touched || (scheduleForm.get('destinationLocation').dirty))">
+            <span *ngIf="scheduleForm.get('destinationLocation').errors.required">
+              Destination Location Name is required
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <h5 class="m-3">Configuration</h5>
+      <div class="row m-0">
+        <div class="col-sm-6">
+          <label>Frequency:</label>
+          <select name="location" class="form-control"  formControlName="frequency">
+            <option *ngFor="let freq of frequency" [value]="freq.name">
+              {{freq.name}}
+            </option>
+          </select>
+          <!-- <span class="help-block" *ngIf="scheduleForm.get('frequency').errors &&
+          (scheduleForm.get('frequency').touched || (scheduleForm.get('frequency').dirty))">
+            <span *ngIf="scheduleForm.get('frequency').errors.required">
+              Frequency is required
+            </span>
+          </span> -->
+        </div>
+
+        <div class="col-sm-6">
+          <label>Time:</label>
+          <ngb-timepicker [(ngModel)]="time" formControlName="time" [meridian]="meridian" [spinners]="spinners">
+          </ngb-timepicker>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer p-0">
+    <button class="btn btn-primary btn-sm m-2" type="save" 
+      [disabled]="!scheduleForm.valid && !formValue">Test</button>
+    <button *ngIf="!formValue" class="btn btn-primary btn-sm m-2" type="submit"
+      [disabled]="!scheduleForm.valid">Save</button>
+  </div>
+</form>
